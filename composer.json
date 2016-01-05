@@ -1,5 +1,5 @@
 {
-    "name": "chobie/jira-api-restclient",
+    "name": "jpastoor/jira-api-restclient",
     "description": "JIRA REST API.",
     "keywords": ["jira","rest","api"],
     "type": "library",
@@ -11,7 +11,6 @@
             "email": "chobieeee@php.net"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
     },
@@ -23,9 +22,9 @@
             "chobie\\" : "src"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0-dev"
+    "autoload-dev": {
+        "psr-4": {
+            "chobie\\Tests\\": "tests"
         }
     }
 }

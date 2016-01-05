@@ -1,6 +1,10 @@
 # Jira Api Rest Client
 
-This fork is meant to fix an incompatibility issue with PHP 5.5 and is published because pull requests are not processed.
+## Notification regarding inactivity original source
+Since pull requests in the original repository do no longer seem to be accepted I took the liberty to merge in the pull requests. 
+I will keep it updated with new pull requests until @chobie returns. 
+
+[![Build Status](https://secure.travis-ci.org/chobie/jira-api-restclient.png)](http://travis-ci.org/chobie/jira-api-restclient)
 
 you know JIRA5 supports REST API. this is very useful to make some custom notifications and automated jobs.
 (JIRA also supports email notification, but it's too much to custom templates, notification timing. unfortunately it requires Administration permission.)
@@ -11,7 +15,7 @@ this API library will help your problems regarding JIRA. hope you enjoy it.
 composer.json
 
 ```
-composer require DerMika/jira-api-restclient dev-master
+composer require jpastoor/jira-api-restclient 2.0.*
 ```
 
 
