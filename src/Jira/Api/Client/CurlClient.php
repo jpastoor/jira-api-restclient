@@ -81,6 +81,7 @@ class CurlClient implements ClientInterface
         if ($method == "POST") {
             curl_setopt($curl, CURLOPT_POST, 1);
             if ($isFile) {
+                $data['file'] = $this->getCurlValue($data['file']);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
             } else {
                 curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
@@ -115,5 +116,28 @@ class CurlClient implements ClientInterface
         }
 
         return $data;
+    }
+
+    /**
+     * If necessary, replace curl file @ string with a CURLFile object (for PHP 5.5 and up)
+     *
+     * @param string $fileString The string in @-format as it is used on PHP 5.4 and older.
+     * @return \CURLFile|string
+     */
+    protected function getCurlValue($fileString)
+    {
+        $theCurlValue = $fileString;
+        $regex = "|^@(.*);filename=(.*)$|";
+        $matches = [];
+
+        if (function_exists('curl_file_create') && preg_match($regex, $fileString, $matches) === 1) {
+            $fileName = $matches[1];
+            $postName = $matches[2];
+            $contentType = null; //Not used in \chobie\Jira\Api at the moment
+
+            $theCurlValue = curl_file_create($fileName, $contentType, $postName);
+        }
+
+        return $theCurlValue;
     }
 }
